@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+    {% include 'main/header_2.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="cover-h">
+        <h2>Распределение посылок</h2>
+    </div>
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+    {% endif %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="error">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group form-group-left">
+                {{ form.max_k.label_tag }}
+                {{ form.max_k }}
+            </div>
+            <div class="form-group form-group-right">
+                {{ form.max_cluster_size.label_tag }}
+                {{ form.max_cluster_size }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group form-group-left">
+                {{ form.max_cluster_weight.label_tag }}
+                {{ form.max_cluster_weight }}
+            </div>
+            <div class="form-group form-group-right">
+                {{ form.max_cluster_volume.label_tag }}
+                {{ form.max_cluster_volume }}
+            </div>
+        </div>
+        <button type="submit" class="btn">Распределить посылки</button>
+    </form>
+{% endblock %}

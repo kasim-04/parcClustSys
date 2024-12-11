@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+    {% include 'main/header_1.html' %}
+{% endblock %}
+
+{% block main %}
+    {% if parcels %}
+        <section class="cover-h">
+            <h2>Посылки</h2>
+            <div class="btn-group">
+                <a href="{% url 'add_parcel' %}" class="small-btn">Добавить</a>
+                <a href="{% url 'add_delivery' %}" class="small-btn">Распределить</a>
+            </div>
+        </section>
+        <table class="parcels-content">
+            <thead>
+                <tr>
+                    <th>Номер посылки</th>
+                    <th>Адрес</th>
+                    <th>Координаты</th>
+                    <th>Вес (кг)</th>
+                    <th>Размер (м^3)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for parcel in parcels %}
+                    <tr>
+                        <td>{{ parcel.number }}</td>
+                        <td>{{ parcel.address }}</td>
+                        <td>{{ parcel.latitude }}, {{ parcel.longitude }}</td>
+                        <td>{{ parcel.weight }}</td>
+                        <td>{{ parcel.width }} x {{ parcel.length }} x {{ parcel.height }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <section class="cover">
+            <h1>Нет новых посылок</h1>
+            <a href="{% url 'add_parcel' %}" class="small-btn">Добавить</a>
+        </section>
+    {% endif %}
+{% endblock %}

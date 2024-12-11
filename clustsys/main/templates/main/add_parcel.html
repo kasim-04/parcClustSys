@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+    {% include 'main/header_2.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="cover-h">
+        <h2>Новая посылка</h2>
+    </div>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="error">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-group form-group-full">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+        </div>
+        <div class="form-row">
+            <div class="form-group form-group-left">
+                {{ form.latitude.label_tag }}
+                {{ form.latitude }}
+            </div>
+            <div class="form-group form-group-right">
+                {{ form.longitude.label_tag }}
+                {{ form.longitude }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group form-group-left">
+                {{ form.weight.label_tag }}
+                {{ form.weight }}
+            </div>
+            <div class="form-group form-group-right">
+                {{ form.width.label_tag }}
+                {{ form.width }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group form-group-left">
+                {{ form.length.label_tag }}
+                {{ form.length }}
+            </div>
+            <div class="form-group form-group-right">
+                {{ form.height.label_tag }}
+                {{ form.height }}
+            </div>
+        </div>
+        <button type="submit" class="btn">Добавить посылку</button>
+    </form>
+{% endblock %}

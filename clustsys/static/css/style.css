@@ -1,0 +1,226 @@
+:root {
+    --color-black: #2A3632;
+    --color-black-2: rgba(42, 54, 50, 0.6);;
+    --color-green: #2BAF74;
+    --color-white: #F6F6F6;
+    --color-grey: #E9E9E9;
+    --color-border-grey: #AFBBBA;
+    --color-red: #E04B4D;
+}
+
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('../fonts/Inter-Regular.woff2') format('woff2'),
+         url('../fonts/Inter-Regular.woff') format('woff'),
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+    color: var(--color-black);
+}
+
+.text-link {
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--color-green)
+}
+
+button {
+    border: none;
+    background-color: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    border: 1px solid var(--color-border-grey);
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: normal;
+    font-style: normal;
+}
+
+th {
+    background-color: var(--color-grey);
+}
+
+h1 {
+    font-size: 60px;
+    line-height: 1.1;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2 {
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: normal;
+    font-style: normal;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.subtitle {
+    font-size: 24px;
+    line-height: 1.1;
+    font-weight: normal;
+    font-style: normal;
+    color: var(--color-black-2)
+}
+
+.error-text {
+    color: red;
+}
+
+.label {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: normal;
+    font-style: normal;
+    color: var(--color-black-2)
+}
+
+.btn {
+    width: 100%;
+    height: 56px;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    color: var(--color-white);
+    background-color: var(--color-green);
+}
+
+.small-btn {
+    width: 160px;
+    height: 46px;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.small-btn:hover {
+    color: var(--color-white);
+    background-color: var(--color-green);
+}
+
+.logout:hover {
+    color: var(--color-red)
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group input {
+    height: 44px;
+    margin-top: 5px;
+    border: 1px solid var(--color-border-grey);
+    background-color: var(--color-white);
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: normal;
+    font-style: normal;
+    padding: 0 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.form-group-full {
+    width: 100%
+}
+
+.form-group-left {
+    width: 387px;
+}
+
+.form-group-right {
+    width: 388px;
+}
+
+.error {
+    color: var(--color-red);
+}

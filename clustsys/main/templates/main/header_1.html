@@ -1,0 +1,8 @@
+<ul class="header-group">
+    <li><a href="{% url 'parcels' %}">Посылки</a></li>
+    <li><a href="{% url 'reports' %}">Отчеты</a></li>
+</ul>
+<ul class="header-group">
+    <li><p>{{ user.username }}</p></li>
+    <li><a href="{% url 'logout' %}" class="logout">Выйти</a></li>
+</ul>

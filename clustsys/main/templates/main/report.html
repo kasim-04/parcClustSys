@@ -1,0 +1,88 @@
+{% extends 'main/base.html' %}
+
+{% block link %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+{% endblock %}
+
+{% block header %}
+    {% include 'main/header_1.html' %}
+{% endblock %}
+
+{% block main %}
+    <section class="cover">
+        <h1>Отчет</h1>
+        <h1 class="subtitle">Партия №{{ parcel_batch.number }}</h1>
+    </section>
+
+    <section class="details">
+        <div class="report-details">
+            <div class="report-details-card">
+                <p class="label">Необходимо курьеров</p>
+                <h3>{{ parcel_batch.k }}</h3>
+            </div>
+            <div class="report-details-card">
+                <p class="label">Макс. кол-во посылок в группе</p>
+                <h3>{{ parcel_batch.max_cluster_size }}</h3>
+            </div>
+            <div class="report-details-card">
+                <p class="label">Грузоподъемность транспорта</p>
+                <h3>{{ parcel_batch.weight }} кг</h3>
+            </div>
+            <div class="report-details-card">
+                <p class="label">Вместимость транспорта</p>
+                <h3>{{ parcel_batch.volume }} м^3</h3>
+            </div>
+        </div>
+        <a id="download-pdf" class="btn">Скачать в PDF</a>
+    </section>
+
+    <section class="report-content">
+        {% for group, deliveries in deliveries_by_group.items %}
+            <div class="report-content-block">
+                <h3>Курьер {{ forloop.counter }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Номер посылки</th>
+                            <th>Адрес</th>
+                            <th>Координаты</th>
+                            <th>Вес (кг)</th>
+                            <th>Размер (м^3)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for delivery in deliveries %}
+                            <tr>
+                                <td>{{ delivery.parcel.number }}</td>
+                                <td>{{ delivery.parcel.address }}</td>
+                                <td>{{ delivery.parcel.latitude }}, {{ delivery.parcel.longitude }}</td>
+                                <td>{{ delivery.parcel.weight }}</td>
+                                <td>{{ delivery.parcel.width }} x {{ delivery.parcel.length }} x {{ delivery.parcel.height }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script>
+        document.getElementById('download-pdf').addEventListener('click', function () {
+            const element = document.querySelector('.report-content');
+
+            html2pdf()
+                .set({
+                    margin: [5, 5, 5, 5], // Отступы
+                    filename: 'Отчет.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                })
+                .from(element)
+                .save()
+        });
+    </script>
+{% endblock %}
+

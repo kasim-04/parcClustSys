@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+    {% include 'main/header_1.html' %}
+{% endblock %}
+
+{% block main %}
+    {% if parcel_batches %}
+        <section class="cover">
+            <h1>Отчеты</h1>
+        </section>
+        <section class="reports-content">
+            <ul>
+                {% for batch in parcel_batches %}
+                    <li>
+                        <a href="{% url 'report' batch_number=batch.number %}">
+                            <div class="report-card">
+                                <p>Отчет о партии №{{ batch.number }}</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+        <section class="cover">
+            <h2>Нет отчетов, необходимо добавить посылку</h2>
+            <a href="{% url 'add_parcel' %}" class="small-btn">Добавить</a>
+        </section>
+    {% endif %}
+{% endblock %}
